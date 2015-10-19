@@ -18,7 +18,7 @@ class AlarmsControllerTest < ActionController::TestCase
 
   test "should create alarm" do
     assert_difference('Alarm.count') do
-      post :create, alarm: { heures: @alarm.heures, lieu: @alarm.lieu, minutes: @alarm.minutes }
+      post :create, alarm: { active: @alarm.active, heures: @alarm.heures, lieu: @alarm.lieu, minutes: @alarm.minutes }
     end
 
     assert_redirected_to alarm_path(assigns(:alarm))
@@ -35,7 +35,7 @@ class AlarmsControllerTest < ActionController::TestCase
   end
 
   test "should update alarm" do
-    patch :update, id: @alarm, alarm: { heures: @alarm.heures, lieu: @alarm.lieu, minutes: @alarm.minutes }
+    patch :update, id: @alarm, alarm: { active: @alarm.active, heures: @alarm.heures, lieu: @alarm.lieu, minutes: @alarm.minutes }
     assert_redirected_to alarm_path(assigns(:alarm))
   end
 

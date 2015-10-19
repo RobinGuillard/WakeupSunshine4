@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Heures:</strong>
+  <%= @alert.heures %>
+</p>
+
+<p>
+  <strong>Minutes:</strong>
+  <%= @alert.minutes %>
+</p>
+
+<p>
+  <strong>Lieu:</strong>
+  <%= @alert.lieu %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @alert.active %>
+</p>
+
+<%= link_to 'Edit', edit_alert_path(@alert) %> |
+<%= link_to 'Back', alerts_path %>

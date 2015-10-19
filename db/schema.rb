@@ -11,12 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151018151000) do
+ActiveRecord::Schema.define(version: 20151019172434) do
 
   create_table "alarms", force: :cascade do |t|
     t.integer  "heures"
     t.integer  "minutes"
     t.string   "lieu"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "alerts", force: :cascade do |t|
+    t.integer  "heures"
+    t.integer  "minutes"
+    t.string   "lieu"
+    t.boolean  "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
