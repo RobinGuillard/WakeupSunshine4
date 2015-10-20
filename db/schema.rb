@@ -13,14 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20151019172434) do
 
-  create_table "alarms", force: :cascade do |t|
-    t.integer  "heures"
-    t.integer  "minutes"
-    t.string   "lieu"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "alerts", force: :cascade do |t|
     t.integer  "heures"
     t.integer  "minutes"

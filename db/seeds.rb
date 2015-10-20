@@ -5,3 +5,17 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+alert.create(
+	heures: "11",
+	Minutes: "12",
+	Lieu: "Paris",
+	Active: true
+	)
+	
+alert.create(
+	heures: "13",
+	Minutes: "14",
+	Lieu: "Paris",
+	Active: false
+	)
