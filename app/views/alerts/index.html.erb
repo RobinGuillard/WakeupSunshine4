@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Alerts</h1>
+<h1>Bienvenue sur l'onglet de gestion de vos alarmes!</h1>
 
 <table>
   <thead>
@@ -20,9 +20,10 @@
         <td><%= alert.minutes %></td>
         <td><%= alert.lieu %></td>
         <td><%= alert.active %></td>
-        <td><%= link_to 'Show', alert %></td>
         <td><%= link_to 'Edit', edit_alert_path(alert) %></td>
         <td><%= link_to 'Destroy', alert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Activer et regarder le temps qui reste', alert, method: :Rendre_active %></td>
+        <td><%= link_to 'fait-il-beau?', "http://api.openweathermap.org/data/2.5/weather?q=" + alert.lieu + ",fr&appid=bd82977b86bf27fb59a04b61b657fb6f"  %></td>
       </tr>
     <% end %>
   </tbody>
@@ -31,3 +32,4 @@
 <br>
 
 <%= link_to 'New Alert', new_alert_path %>
+

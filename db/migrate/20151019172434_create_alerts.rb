@@ -6,7 +6,7 @@ class CreateAlerts < ActiveRecord::Migration
       t.string :lieu
       t.boolean :active
 
-      t.timestamps null: false
+      t.timestamps :creation
     end
   end
 end
