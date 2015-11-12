@@ -22,8 +22,8 @@
         <td><%= alert.active %></td>
         <td><%= link_to 'Edit', edit_alert_path(alert) %></td>
         <td><%= link_to 'Destroy', alert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Activer et regarder le temps qui reste', alert, method: :Rendre_active %></td>
-        <td><%= link_to 'fait-il-beau?', "http://api.openweathermap.org/data/2.5/weather?q=" + alert.lieu + ",fr&appid=bd82977b86bf27fb59a04b61b657fb6f"  %></td>
+        <td><%= link_to 'Activer et regarder le temps qui reste', alert, method: :Rendre_active  %></td>
+        <td><%= link_to 'fait-il-beau?', edit_alert_path(alert), method: :fait_il_beau  %></td> 
       </tr>
     <% end %>
   </tbody>

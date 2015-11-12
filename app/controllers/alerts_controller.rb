@@ -20,20 +20,34 @@ class AlertsController < ApplicationController
     @reveil = Time.new(@date.year,@date.month,@date.day, @alert.heures,@alert.minutes, 0).to_time.to_i
     
     @tempsquireste = @reveil - @t
-    if @tempsquireste < 0
+    if @tempsquireste < -60
       @tempsquireste = @tempsquireste + 60*60*60*24
     end
+
+    @lieu = @alert.lieu
+    @data = JSON.load(open("http://api.openweathermap.org/data/2.5/weather?q=" + @lieu + ",fr&appid=2de143494c0b295cca9337e1e96b00e0", :proxy => "http://kuzh.polytechnique.fr:8080"))
+    @weather = @data["weather"][0]["main"]
+
       #@t.to_time.to_i
     if !@alert.active
       @alert.update_attribute :active, true
       if @tempsquireste < 0
-        render text: "driiiiiiiing!!!"
+        if @weather == "clear"
+          render text: "driiiiiiiing!!!"
+        else
+          render text: "Ne te réveille pas demain, le descriptif du temps est: " + @weather
+        end  
       else
         render text: "il reste " + @tempsquireste.to_s + " secondes avant ton reveil, sweet dreams O:-)"
       end
     else
       if @tempsquireste < 0
-        render text: "driiiiiiiing!!!"
+        if @weather == "Clear"
+          render text: "driiiiiiiing!!!"
+        else
+          render text: "Ne te réveille pas demain, le descriptif du temps est: " + @weather
+        end
+        
       else
         render text: "il reste " + @tempsquireste.to_s + " secondes avant ton reveil, sweet dreams O:-)"
       end
@@ -43,12 +57,16 @@ class AlertsController < ApplicationController
   def fait_il_beau
     @alert = Alert.find(params[:id])
     @lieu = @alert.lieu
-    #hash = JSON.parse("http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=bd82977b86bf27fb59a04b61b657fb6f")
-    render text: @lieu
-   #content = open("https://api.github.com").read
 
-    #@data = JSON.parse( JSON.load(open("https://api.github.com")))
+    #hash = JSON.parse("http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=bd82977b86bf27fb59a04b61b657fb6f")
     
+   #content = open("https://api.github.com").read
+   # ancienne direction dans la view du bouton fait-il-beau : #http://api.openweathermap.org/data/2.5/weather?q=" + alert.lieu + ",fr&appid=2de143494c0b295cca9337e1e96b00e0"
+    @data = JSON.load(open("http://api.openweathermap.org/data/2.5/weather?q=" + @lieu + ",fr&appid=2de143494c0b295cca9337e1e96b00e0", :proxy => "http://kuzh.polytechnique.fr:8080"))
+    @try = @data["weather"][0]["main"] #bien se souvenir: il y a des crochets autour de weather du coup c'est un tableau, du coup il faut mettre [0] pour rentrer dedans
+    render text: @try
+    #@source = "http://api.openweathermap.org/data/2.5/weather?q=" + @lieu + ",fr&appid=2de143494c0b295cca9337e1e96b00e0"
+    #resp = Net::HTTP.get_response(URI.parse(@source))
   end
 #
 
