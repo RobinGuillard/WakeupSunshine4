@@ -7,6 +7,9 @@ class AlertsController < ApplicationController
   require 'time'
   require'date'
 
+
+
+
   # GET /alerts
   # GET /alerts.json
   def index
@@ -25,7 +28,7 @@ class AlertsController < ApplicationController
     end
 
     @lieu = @alert.lieu
-    @data = JSON.load(open("http://api.openweathermap.org/data/2.5/weather?q=" + @lieu + ",fr&appid=2de143494c0b295cca9337e1e96b00e0", :proxy => "http://kuzh.polytechnique.fr:8080"))
+    @data = JSON.load(open("http://api.openweathermap.org/data/2.5/weather?q=" + @lieu + ",fr&appid=2de143494c0b295cca9337e1e96b00e0"))
     #, :proxy => "http://kuzh.polytechnique.fr:8080"
     @weather = @data["weather"][0]["main"]
 
@@ -63,7 +66,7 @@ class AlertsController < ApplicationController
     
    #content = open("https://api.github.com").read
    # ancienne direction dans la view du bouton fait-il-beau : #http://api.openweathermap.org/data/2.5/weather?q=" + alert.lieu + ",fr&appid=2de143494c0b295cca9337e1e96b00e0"
-    @data = JSON.load(open("http://api.openweathermap.org/data/2.5/weather?q=" + @lieu + ",fr&appid=2de143494c0b295cca9337e1e96b00e0", :proxy => "http://kuzh.polytechnique.fr:8080"))
+    @data = JSON.load(open("http://api.openweathermap.org/data/2.5/weather?q=" + @lieu + ",fr&appid=2de143494c0b295cca9337e1e96b00e0"))
     #, :proxy => "http://kuzh.polytechnique.fr:8080"
     @try = @data["weather"][0]["main"] #bien se souvenir: il y a des crochets autour de weather du coup c'est un tableau, du coup il faut mettre [0] pour rentrer dedans
     render text: @try
