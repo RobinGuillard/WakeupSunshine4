@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20151019172434) do
     t.integer  "minutes"
     t.string   "lieu"
     t.boolean  "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
